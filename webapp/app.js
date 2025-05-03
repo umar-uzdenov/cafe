@@ -94,26 +94,18 @@ submitOrderBtn.onclick = () => {
     alert('Please add items to your order.');
     return;
   }
-  fetch('/order', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ chatId, items: order })
-  })
-    .then(res => res.json())
-    .then(data => {
-      if (data.success) {
-        alert('Order submitted! Your order ID is ' + data.orderId);
-        order = [];
-        renderOrder();
-      } else {
-        alert('Failed to submit order: ' + data.error);
-      }
-    })
-    .catch(err => {
-      alert('Error submitting order: ' + err.message);
-    });
+  if (window.Telegram && window.Telegram.WebApp) {
+    const orderData = {
+      chatId,
+      items: order
+    };
+    window.Telegram.WebApp.sendData(JSON.stringify(orderData));
+    alert('Order submitted! Please wait for confirmation.');
+    order = [];
+    renderOrder();
+  } else {
+    alert('Telegram Web App API is not available.');
+  }
 };
 
 renderCategories();
