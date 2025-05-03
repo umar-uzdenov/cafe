@@ -1,5 +1,4 @@
 const TelegramBot = require('node-telegram-bot-api');
-const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
@@ -9,11 +8,6 @@ const TOKEN = '7724653250:AAHpC9Zx2IDyxjJ1gZuDm_sdMIbQnXn0lU0';
 const ADMIN_ID = 893065688;
 
 const bot = new TelegramBot(TOKEN, { polling: true });
-const app = express();
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'webapp')));
-
-const PORT = process.env.PORT || 8080;
 
 // Menu categories and items (all halal, no forbidden items)
 const menu = {
@@ -58,9 +52,34 @@ bot.onText(/\/start/, (msg) => {
   });
 });
 
-// Handle text messages
+// Handle text messages and web app data
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
+
+  // Handle data sent from Telegram Web App
+  if (msg.web_app_data) {
+    console.log(msg.web_app_data);
+
+    try {
+      const data = JSON.parse(msg.web_app_data.data);
+      if (data.chatId && data.items && Array.isArray(data.items) && data.items.length > 0) {
+        const orderId = orderIdCounter++;
+        orders[orderId] = {
+          id: orderId,
+          chatId: data.chatId,
+          items: data.items,
+          status: "Pending"
+        };
+        const orderDetails = data.items.map(i => `${i.name} x${i.quantity}`).join(", ");
+        bot.sendMessage(ADMIN_ID, `New order #${orderId} from user ${data.chatId}:\n${orderDetails}\n\nReply with /confirm ${orderId} to mark as completed.`);
+        bot.sendMessage(data.chatId, `Your order #${orderId} has been received. Thank you!`);
+      }
+    } catch (e) {
+      console.error('Failed to parse web_app_data:', e);
+    }
+    return;
+  }
+
   const text = msg.text;
 
   if (text === "Order via Web App") {
@@ -88,28 +107,6 @@ bot.on('message', (msg) => {
   }
 });
 
-// Endpoint to receive orders from web app
-app.post('/order', (req, res) => {
-  const { chatId, items } = req.body;
-  if (!chatId || !items || !Array.isArray(items) || items.length === 0) {
-    return res.status(400).json({ error: "Invalid order data" });
-  }
-
-  const orderId = orderIdCounter++;
-  orders[orderId] = {
-    id: orderId,
-    chatId,
-    items,
-    status: "Pending"
-  };
-
-  // Notify admin
-  const orderDetails = items.map(i => `${i.name} x${i.quantity}`).join(", ");
-  bot.sendMessage(ADMIN_ID, `New order #${orderId} from user ${chatId}:\n${orderDetails}\n\nReply with /confirm ${orderId} to mark as completed.`);
-
-  res.json({ success: true, orderId });
-});
-
 // Admin command to confirm order completion
 bot.onText(/\/confirm (\d+)/, (msg, match) => {
   const chatId = msg.chat.id;
@@ -127,6 +124,4 @@ bot.onText(/\/confirm (\d+)/, (msg, match) => {
   bot.sendMessage(orders[orderId].chatId, `Your order #${orderId} has been completed. Thank you!`);
 });
 
-app.listen(PORT, () => {
-  console.log(`Web app server running on port ${PORT}`);
-});
+

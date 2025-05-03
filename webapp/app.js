@@ -99,8 +99,9 @@ submitOrderBtn.onclick = () => {
       chatId,
       items: order
     };
-    window.Telegram.WebApp.sendData(JSON.stringify(orderData));
-    alert('Order submitted! Please wait for confirmation.');
+    // window.Telegram.WebApp.sendData(JSON.stringify(orderData));
+    window.Telegram.WebApp.sendData(JSON.stringify({lol:"ggg"}));
+    // alert('Order submitted! Please wait for confirmation.');
     order = [];
     renderOrder();
   } else {
