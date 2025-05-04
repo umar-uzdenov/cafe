@@ -1,11 +1,10 @@
+require('dotenv').config();
 const TelegramBot = require('node-telegram-bot-api');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-// Replace with your Telegram bot token
-const TOKEN = '7724653250:AAHpC9Zx2IDyxjJ1gZuDm_sdMIbQnXn0lU0';
-// Replace with your admin Telegram user ID
-const ADMIN_ID = 893065688;
+const TOKEN = process.env.TOKEN;
+const ADMIN_ID = parseInt(process.env.ADMIN_ID, 10);
 
 const bot = new TelegramBot(TOKEN, { polling: true });
 
@@ -54,6 +53,7 @@ bot.onText(/\/start/, (msg) => {
 
 // Handle text messages and web app data
 bot.on('message', (msg) => {
+    console.log(msg)
   const chatId = msg.chat.id;
 
   // Handle data sent from Telegram Web App

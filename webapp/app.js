@@ -1,6 +1,9 @@
 const urlParams = new URLSearchParams(window.location.search);
 const chatId = urlParams.get('chatId');
 
+const tg = window.Telegram.WebApp
+tg.ready()
+
 const categories = {
   "hot_dishes": "Hot Dishes",
   "cold_dishes": "Cold Dishes",
@@ -32,7 +35,7 @@ const menu = {
   ]
 };
 
-let currentCategory = null;
+let currentCategory = 'hot_dishes';
 let order = [];
 
 const categoriesDiv = document.getElementById('categories');
@@ -90,18 +93,15 @@ function renderOrder() {
 }
 
 submitOrderBtn.onclick = () => {
+    // window.Telegram.WebApp.sendData(JSON.stringify({lol:"ggg"}));
+
   if (order.length === 0) {
     alert('Please add items to your order.');
     return;
   }
   if (window.Telegram && window.Telegram.WebApp) {
-    const orderData = {
-      chatId,
-      items: order
-    };
-    // window.Telegram.WebApp.sendData(JSON.stringify(orderData));
-    window.Telegram.WebApp.sendData(JSON.stringify({lol:"ggg"}));
-    // alert('Order submitted! Please wait for confirmation.');
+    window.Telegram.WebApp.sendData(JSON.stringify({ order }));
+    alert('Order submitted! Please wait for confirmation.');
     order = [];
     renderOrder();
   } else {
