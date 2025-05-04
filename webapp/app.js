@@ -114,3 +114,5 @@ tg.MainButton.onClick(() => {
 });
 
 renderCategories();
+renderItems()
+renderOrder()
