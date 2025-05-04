@@ -41,7 +41,6 @@ let order = [];
 const categoriesDiv = document.getElementById('categories');
 const itemsDiv = document.getElementById('items');
 const orderList = document.getElementById('order-list');
-const submitOrderBtn = document.getElementById('submit-order');
 
 function renderCategories() {
   categoriesDiv.innerHTML = '';
@@ -90,25 +89,28 @@ function renderOrder() {
     li.textContent = `${item.name} x${item.quantity}`;
     orderList.appendChild(li);
   });
+
+  if (order.length > 0) {
+    tg.MainButton.setText("Submit Order");
+    tg.MainButton.show();
+  } else {
+    tg.MainButton.hide();
+  }
 }
 
-submitOrderBtn.onclick = () => {
+tg.MainButton.onClick(() => {
   if (order.length === 0) {
     alert('Please add items to your order.');
     return;
   }
-  if (window.Telegram && tg) {
-    const dataToSend = {
-      chatId: tg.initDataUnsafe.user.id,
-      items: order
-    };
-    tg.sendData(JSON.stringify(dataToSend));
-    alert('Order submitted! Please wait for confirmation.');
-    order = [];
-    renderOrder();
-  } else {
-    alert('Telegram Web App API is not available.');
-  }
-};
+  const dataToSend = {
+    chatId: tg.initDataUnsafe.user.id,
+    items: order
+  };
+  tg.sendData(JSON.stringify(dataToSend));
+  alert('Order submitted! Please wait for confirmation.');
+  order = [];
+  renderOrder();
+});
 
 renderCategories();
