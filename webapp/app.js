@@ -1,5 +1,5 @@
-const urlParams = new URLSearchParams(window.location.search);
-const chatId = urlParams.get('chatId');
+// const urlParams = new URLSearchParams(window.location.search);
+// const chatId = urlParams.get('chatId');
 
 const tg = window.Telegram.WebApp
 tg.ready()
@@ -93,14 +93,16 @@ function renderOrder() {
 }
 
 submitOrderBtn.onclick = () => {
-    // window.Telegram.WebApp.sendData(JSON.stringify({lol:"ggg"}));
-
   if (order.length === 0) {
     alert('Please add items to your order.');
     return;
   }
-  if (window.Telegram && window.Telegram.WebApp) {
-    window.Telegram.WebApp.sendData(JSON.stringify({ order }));
+  if (window.Telegram && tg) {
+    const dataToSend = {
+      chatId: tg.initDataUnsafe.user.id,
+      items: order
+    };
+    tg.sendData(JSON.stringify(dataToSend));
     alert('Order submitted! Please wait for confirmation.');
     order = [];
     renderOrder();
