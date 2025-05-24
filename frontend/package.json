@@ -1,0 +1,17 @@
+{
+  "name": "frontend",
+  "scripts": {
+    "dev": "imba -w server.imba",
+    "build": "imba build server.imba",
+    "preview": "node dist/server.js",
+    "prod": "npx pm2 start dist/server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "node-telegram-bot-api": "^0.66.0"
+  },
+  "devDependencies": {
+    "imba": "^2.0.0-alpha.245"
+  }
+}
