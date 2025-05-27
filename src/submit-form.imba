@@ -51,8 +51,9 @@ tag submit-form
 
 	<self>
 		<div>
+			<label>	"Ваш номер для подтверждения заказа"
 			<input .invalid=telInvalid bind=order.tel @input=(telInvalid = false)
-				placeholder="Ваш номер для подтверждения заказа">
+				placeholder="Ваш номер">
 		<div>
 			<textarea rows=3 placeholder="Ваш адрес, если хотите доставку" bind=order.address>
 		# <button @click=submit> show ? "Заказать" : "Оформить заказ"

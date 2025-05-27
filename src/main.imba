@@ -1,5 +1,5 @@
-import Order from './Order.imba'
 
+import Order from './Order.imba'
 import './data'
 import './tabs'
 
