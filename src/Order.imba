@@ -37,3 +37,14 @@ export default class Order
 		else
 			items.push {...item, quantity: 1}
 
+	def rem dish
+		let item = items.find do $1.id == dish.id
+		# console.log self.items
+		return if item === undefined
+
+		# console.log item
+		total -= item.price
+		if item.quantity == 1
+			self.items.splice self.items.findIndex(do $1.id === item.id), 1
+		else
+			item.quantity--

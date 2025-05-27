@@ -1,18 +1,18 @@
 {
-  "name": "cafe-telegram-bot",
-  "version": "1.0.0",
-  "description": "Telegram bot and web app for cafe ordering",
-  "main": "bot.js",
+  "name": "frontend",
   "scripts": {
-    "start": "node bot.js"
+    "dev": "imba -w server.imba",
+    "build": "imba build server.imba",
+    "preview": "node dist/server.js",
+    "prod": "npx pm2 start dist/server.js"
   },
   "dependencies": {
-    "body-parser": "^1.20.2",
     "dotenv": "^16.5.0",
-    "express": "^4.18.2",
-    "node-telegram-bot-api": "^0.61.0"
+    "express": "^5.1.0",
+    "nanoid": "^5.1.5",
+    "node-telegram-bot-api": "^0.66.0"
   },
-  "engines": {
-    "node": ">=14.0.0"
+  "devDependencies": {
+    "imba": "^2.0.0-alpha.245"
   }
 }

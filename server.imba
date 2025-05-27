@@ -4,21 +4,19 @@ import dotenv from 'dotenv'
 import TelegramBot from 'node-telegram-bot-api'
 
 dotenv.config()
+
 const TOKEN = process.env.TOKEN;
-const ADMIN_ID = parseInt(process.env.ADMIN_ID, 10);
+const ADMIN_ID = +process.env.ADMIN_ID
+const PORT = +process.env.PORT || 443
+const IP = +process.env.IP || "0.0.0.0"
+# console.log(process.env)
 
 const bot = new TelegramBot(TOKEN, { polling: true })
-def test
-	bot.sendMessage(ADMIN_ID, "Hello admin")
-# test!
+
 
 const app = express!
 app.use express.json!
 
-# const sub = express()
-# sub.use express.json!
-
-# app.use "/cafe", sub
 
 # @ts-ignore
 app.get '/', do(req, res)
@@ -38,5 +36,5 @@ app.post '/order', do(req, res)
 
 
 # @ts-ignore
-imba.serve app.listen(5500, '0.0.0.0')
+imba.serve app.listen(PORT, IP)
 # imba.serve app.listen(process.env.PORT or 5000, '0.0.0.0')

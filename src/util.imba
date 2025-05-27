@@ -1,20 +1,17 @@
 window.Telegram.WebApp.ready()
 
+if ["ios", "android"].includes(window.Telegram.WebApp.platform.toLowerCase())
+	window.Telegram.WebApp.ready()
+
 # defining globals
 extend tag element
 	get tg do window.Telegram.WebApp
-	def post url, data
-		return new Promise do(resolve, reject) # @ts-ignore
-			try
-				let xhr = new XMLHttpRequest()
-				xhr.open "POST", url # "/api{url}"
-				xhr.setRequestHeader "Content-Type", "application/json"
-				xhr.onload = do resolve(JSON.parse xhr.responseText) # @ts-ignore
-				xhr.send JSON.stringify { chatId: tg.initDataUnsafe.user..id ?? 0, ...data}
-			catch e
-				console.log e
 	def sleep ms do new Promise(do setTimeout($1, ms))
 	def launch do setTimeout $1, 0
+
+
+
+
 
 
 # function launchLoop(fun, interval = 1000, immediate = true) {
