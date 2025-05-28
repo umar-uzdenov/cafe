@@ -11,7 +11,7 @@ const PORT = +process.env.PORT || 443
 const IP = +process.env.IP || "0.0.0.0"
 # console.log(process.env)
 
-const bot = new TelegramBot(TOKEN, { polling: true })
+# const bot = new TelegramBot(TOKEN, { polling: true })
 
 
 const app = express!
@@ -32,7 +32,7 @@ app.post '/order', do(req, res)
 	let total = "Итого: {req.body.total} ₽"
 	let tel = "Телефон: {req.body.tel}"
 	let address = req.body.address == "" ? "" : "Адрес доставки: {req.body.address}"
-	bot.sendMessage ADMIN_ID, "{items}\n---\n{total}\n\n{tel}\n{address}"
+	# bot.sendMessage ADMIN_ID, "{items}\n---\n{total}\n\n{tel}\n{address}"
 
 
 # @ts-ignore

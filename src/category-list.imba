@@ -3,12 +3,10 @@ tag category-list
 		dish_list.current = key
 		show_dishes!
 
-	<self.vtc [h:{categoriesHeight}px b:96px]
-		[l:calc(16px - 100vw) r:calc(16px + 100vw)]=!categories_show> # hide for now
+	<self.main [l:calc(16px - 100vw) r:calc(16px + 100vw)]=!categories_show> # hide for now
 		for own key, category of dish_list.list
-			<div [w:100% h:1px bg:#ccc]>
-			<button [c:white fs:20px h:56px] @click=(setCategory key)> category.name
-		<div [w:100% h:1px bg:#ccc]>
-
-	css pos:fixed l:16px r:16px p:32px
-		bg:rgba(0, 0, 0, .5) c:white
+			<div [w:calc(100vw - 16px) mih:1px bg:gray4]>
+			<button [d:hcl px:16px g:24px  c:white w:100% mih:72px] @click=(setCategory key)>
+				<span [fs:40px]> category.icon
+				<span [fs:20px]> category.name
+		<div [w:calc(100vw - 16px) mih:1px bg:gray4]>

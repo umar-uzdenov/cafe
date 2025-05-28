@@ -6,7 +6,9 @@ import './tabs'
 import './price'
 import './item'
 
+import './header-block'
 import './menu-bar'
+
 import './category-list'
 import './item-list'
 import './order-view'
@@ -21,13 +23,12 @@ extend tag element
 	get current do currentCategory
 	set current value do currentCategory = value
 
-
-
 tag app
+	def build
+		headerText = "Категории"
 	<self[d:vtc g:16px]>
-		<img [pos:fixed t:16px w:80px h:80px] src="/img/sturm.jpg">
-		<h2 [d:hcc h:48px mih:48px t:calc($top - 20px) pos:fixed l:0 r:0 c:white]>
-			dish_list.list[dish_list.current].name
+		<img [pos:fixed t:16px w:72px h:40px] src="/img/logo.jpg">
+		<header-block>
 		<category-list>
 		<item-list>
 		<order-view>
@@ -38,7 +39,7 @@ imba.mount <app>
 
 # navigator.wakeLock.request('screen')
 
-console.log window.innerHeight
+# console.log window.innerHeight
 document.documentElement.style.setProperty "--bh", "{window.innerHeight}px"
 
 global css body $bottom:80px $top:120px
@@ -58,3 +59,6 @@ global css
 	.flc d:flex jc:flex-start ai:center
 	.fcc d:flex jc:center ai:center
 	.vtc d:flex fld:column jc:flex-start ai:center
+	.main
+		mask-image: linear-gradient(to bottom, transparent 0%, white 16px, white calc(100% - 16px), transparent 100%)
+		d:vtc pos:fixed l:0 r:0 h:calc($bh - $bottom - $top) b:$bottom py:16px c:white ofy:scroll

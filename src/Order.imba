@@ -1,6 +1,6 @@
 export default class Order
 	_tel = ""
-	get telIsValid do _tel.length == 10
+	get telIsValid do _tel.length == 12
 	get tel
 		if _tel == "" then ""
 		elif _tel == "+" then "+"
@@ -28,7 +28,7 @@ export default class Order
 			else _tel = value.replaceAll /\D/g, ""
 		elif value.length == 2
 			if value[1] == "7" then _tel = "+7"
-			if value[1] == "8" then _tel = "+7"
+			# elif value[1] == "8" then _tel = "+7"
 			else _tel = "+"
 		elif value.length == 3 then _tel = ""
 		elif value.length == 5 and value[4] != "9" then _tel = "+7"
@@ -41,7 +41,7 @@ export default class Order
 	total = 0
 	items = []
 
-	get data do { tel: "+7{_tel}", items, address, total }
+	get data do { tel: _tel, items, address, total }
 	
 	def add item
 		total += item.price
