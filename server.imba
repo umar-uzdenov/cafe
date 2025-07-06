@@ -62,8 +62,8 @@ if +process.env.SERVER
 		key: fs.readFileSync '../../etc/letsencrypt/live/krch-cafe-bot.ru/privkey.pem'
 		cert: fs.readFileSync '../../etc/letsencrypt/live/krch-cafe-bot.ru/fullchain.pem'
 	# @ts-ignore
-	https
-		.createServer(options, imba.serve app.listen(PORT, IP))
+	imba.serve https
+		.createServer(options, app)
 		.listen(443) do console.log "lol"
 else
 	# @ts-ignore

@@ -36,10 +36,10 @@ tag app
 	# <details-view>
 	# <menu-bar>
 
-tag test
-	<self[d:hcc w:100vw h:100vh bg:gray7 c:white fs:48px]> "testing https"
+# tag test
+# 	<self[d:hcc w:100vw h:100vh bg:gray7 c:white fs:48px]> "testing https"
 
-imba.mount <test>
+# imba.mount <test>
 imba.mount <app>
 
 	
