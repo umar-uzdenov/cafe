@@ -31,7 +31,7 @@ extend tag element
 		# @ts-expect-error
 		let result
 		try
-			result = await post "/order", data
+			result = await post "/cafe-vasabi/order", data # Сделать выбор динамическим
 		catch e
 			window.alert e
 
@@ -48,14 +48,19 @@ extend tag element
 			return false
 
 tag submit-form
+	prop delivery = false
 
 	<self>
+		<h3> "Введите ваши данные для оформления заказа"
 		<div>
-			<label>	"Ваш номер для подтверждения заказа"
+			<label>	"Ваш номер"
 			<input .invalid=telInvalid bind=order.tel @input=(telInvalid = false)
 				placeholder="Ваш номер">
 		<div>
-			<textarea rows=3 placeholder="Ваш адрес, если хотите доставку" bind=order.address>
+			<label [d:hcl g:16px]>
+				<input type='checkbox' bind=delivery>
+				"Хочу доставку"
+			<textarea rows=3 placeholder="Ваш адрес" bind=order.address> if delivery
 		# <button @click=submit> show ? "Заказать" : "Оформить заказ"
 	css d:vflex g:16px w:100%
 		div d:vflex g:8px w:100%

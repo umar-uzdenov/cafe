@@ -1,7 +1,7 @@
 window.Telegram.WebApp.ready()
 
 if ["ios", "android"].includes(window.Telegram.WebApp.platform.toLowerCase())
-	window.Telegram.WebApp.ready()
+	window.Telegram.WebApp.requestFullscreen()
 
 # defining globals
 extend tag element

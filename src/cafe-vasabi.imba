@@ -1,10 +1,13 @@
 import { nanoid } from 'nanoid'
 
+
+
 const dish_list =
 	current: "classic_roll"
 	list:
 		"salad":
 			icon: "🥗"
+			img: "salad"
 			name: "Салаты"
 			items: [
 				{ id: nanoid(), name: "Салат Цезарь с курицей", price: 300, size: "250г" }
@@ -13,6 +16,7 @@ const dish_list =
 			]
 		"soup":
 			icon: "🍲"
+			img: "soup"
 			name: "Супы"
 			items: [
 				{ id: nanoid(), name: "Лапша куриная", price: 320, size: "250г" }
@@ -21,6 +25,7 @@ const dish_list =
 		"pasta":
 			icon: "🍝"
 			name: "Паста"
+			img: "pasta"
 			items: [
 				{ id: nanoid(), name: "Фетучини Том Ям", price: 590, desc: "с креветками и черри" }
 				{ id: nanoid(), name: "Фетучини с курицей и грибами", price: 530 }
@@ -28,6 +33,7 @@ const dish_list =
 		"dessert":
 			icon: "🍝"
 			name: "Десерты"
+			img: "dessert"
 			items: [
 				{ id: nanoid(), name: "Жареное мороженое", price: 350 }
 				{ id: nanoid(), name: "Сладкий ролл Минари", price: 380 }
@@ -40,6 +46,7 @@ const dish_list =
 		"hot_snack":
 			icon: "🍟"
 			name: "Горячие закуски"
+			img: "hot-snack"
 			items: [
 				{ id: nanoid(), name: "Картофель фри", price: 180, size: "150г" }
 				{ id: nanoid(), name: "Айдахо", price: 150, size: "150г" }
@@ -50,6 +57,7 @@ const dish_list =
 		"pizza":
 			icon: "🍕"
 			name: "Пицца"
+			img: "pizza"
 			items: [
 				{ id: nanoid(), name: "Морская пикантная", price: 600, size: "33 см" }
 				{ id: nanoid(), name: "Пепперони", price: 560, size: "33 см" }
@@ -64,6 +72,7 @@ const dish_list =
 		"sauce":
 			icon: "🫚"
 			name: "Соусы и приправы"
+			img: "sauce"
 			items: [
 				{ id: nanoid(), name: "Спайси соус", price: 100, size: "50г" }
 				{ id: nanoid(), name: "Соевый соус", price: 60, size: "50г" }
@@ -76,6 +85,7 @@ const dish_list =
 		"cold_roll":
 			icon: "🍣"
 			name: "Холодные роллы"
+			img: "cold-roll"
 			items: [
 				{ id: nanoid(), name: "Филадельфия", price: 380, size: "8 шт", desc: "сыр, огурец, авокадо, лосось" }
 				{ id: nanoid(), name: "Филадельфия с угрём", price: 390, size: "8 шт", desc: "сыр, огурец, авокадо, угорь" }
@@ -101,6 +111,7 @@ const dish_list =
 		"classic_roll":
 			icon: "🍥"
 			name: "Классические роллы"
+			img: "classic-roll"
 			items: [
 				{ id: nanoid(), name: "С огурцом", price: 110, size: "6 шт" }
 				{ id: nanoid(), name: "С лососем", price: 150, size: "6 шт" }
@@ -111,6 +122,7 @@ const dish_list =
 		"baked_roll":
 			icon: "🌀"
 			name: "Запечённые роллы"
+			img: "baked-roll"
 			items: [
 				{ id: nanoid(), name: "Калифорния гриль", price: 220, size: "8 шт", desc: "краб, огурец, тамаго, масаго, спайси соус" }
 				{ id: nanoid(), name: "Филадельфия гриль", price: 390, size: "8 шт", desc: "сыр, огурец, тамаго, лосось, спайси соус" }
@@ -138,6 +150,7 @@ const dish_list =
 		"fried_roll":
 			icon: "🍤"
 			name: "Жареные роллы"
+			img: "fried-roll"
 			items: [
 				{ id: nanoid(), name: "Жареный ролл с крабом", price: 320, size: "8 шт", desc: "сыр сливочный, краб" }
 				{ id: nanoid(), name: "Жареный ролл с креветкой", price: 350, size: "8 шт", desc: "сыр сливочный, креветка" }
@@ -149,6 +162,7 @@ const dish_list =
 		"roll_set":
 			icon: "🍱"
 			name: "Сеты"
+			img: "roll-set"
 			items: [
 				{ id: nanoid(), name: "Сет Кавказ", price: 2150, size: "48 шт", desc: "Император, Лас Вегас, Эби Идзуми, Дзен, Сакура, Бомбей" }
 				{ id: nanoid(), name: "Сет Архыз", price: 1150, size: "24 шт", desc: "Филадельфия гриль, Ролл Вики, Лас Вегас" }
@@ -163,6 +177,7 @@ const dish_list =
 		"burger":
 			icon: "🍔"
 			name: "Бургеры"
+			img: "burger"
 			items: [
 				{ id: nanoid(), name: "Классический говяжий", price: 350 }
 				{ id: nanoid(), name: "Классический куриный", price: 350 }
@@ -171,8 +186,7 @@ const dish_list =
 				{ id: nanoid(), name: "Дон Педро", price: 350 }
 			]
 
-let categoriesHeight = Object.keys(dish_list.list).length * (56 + 1) + 1 + 32 * 2
-
-extend tag element
-	get dish_list do dish_list
-	get categoriesHeight do categoriesHeight
+export default {
+	current: "classic_roll"
+	list: dish_list.list
+}
