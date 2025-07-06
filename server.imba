@@ -57,8 +57,8 @@ cafeVasabi.post '/order', do(req, res)
 
 if +process.env.SERVER
 	const options =
-		key: fs.readFileSync '../../../etc/letsencrypt/live/krch-cafe-bot.ru/privkey.pem'
-		cert: fs.readFileSync '../../../etc/letsencrypt/live/krch-cafe-bot.ru/fullchain.pem'
+		key: fs.readFileSync '../../etc/letsencrypt/live/krch-cafe-bot.ru/privkey.pem'
+		cert: fs.readFileSync '../../etc/letsencrypt/live/krch-cafe-bot.ru/fullchain.pem'
 	# @ts-ignore
 	imba.serve app.listen(PORT, IP), options
 else
