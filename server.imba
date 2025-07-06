@@ -3,6 +3,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import TelegramBot from 'node-telegram-bot-api'
 import fs from 'fs'
+import https from "https"
 
 dotenv.config()
 
@@ -54,17 +55,19 @@ cafeVasabi.post '/order', do(req, res)
 # }, app).listen(port);
 
 # console.log imba.serve
-import http from 'http'
+
 
 if +process.env.SERVER
 	const options =
 		key: fs.readFileSync '../../etc/letsencrypt/live/krch-cafe-bot.ru/privkey.pem'
 		cert: fs.readFileSync '../../etc/letsencrypt/live/krch-cafe-bot.ru/fullchain.pem'
 	# @ts-ignore
-	imba.serve app.listen(PORT, IP), options
+	https
+		.createServer(options, imba.serve app.listen(PORT, IP))
+		.listen(443) do console.log "lol"
 else
 	# @ts-ignore
-	imba.serve app.listen(PORT, IP), {}, {}
+	imba.serve app.listen(IP), {}, {}
 
 	# @ts-ignore
 	# imba.serve app.listen(PORT, IP) 
