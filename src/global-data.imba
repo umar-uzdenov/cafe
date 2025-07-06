@@ -1,5 +1,4 @@
 import Order from './Order.imba'
-import { gsap } from 'gsap'
 
 
 
