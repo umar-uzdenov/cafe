@@ -3,7 +3,8 @@ const style = document.documentElement.style
 const tg = window.Telegram.WebApp
 
 style.setProperty "--vh", "{tg.viewportStableHeight}px"
-style.setProperty "--safe-top", "{tg.contentSafeAreaInset.top}px"
+# style.setProperty "--safe-top", "{tg.contentSafeAreaInset.top}px"
+style.setProperty "--safe-top", "{48}px"
 style.setProperty "--safe-bottom", "{tg.contentSafeAreaInset.bottom}px"
 style.setProperty "--main-height", "{
 	tg.viewportStableHeight - tg.contentSafeAreaInset.top - tg.contentSafeAreaInset.bottom -
