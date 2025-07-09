@@ -11,9 +11,10 @@ tag category-list
 		# сделать красиво, в общем
 
 	<self @scroll=scrollCategories
+		[t:{headerHeight}px]
 		[w:80px l:0px]=(currentTab == "item-list")
 		[w:80px l:-100vw]=(currentTab == "order-list" or currentTab == "customer-data")
-		[h:calc($main-height - {headerHeight}px)]
+		# [h:calc($main-height - {headerHeight}px)]
 	>
 		for own key, category of menu.list
 			<category-separator>
