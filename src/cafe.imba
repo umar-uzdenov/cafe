@@ -1,27 +1,46 @@
 tag cafe
 	prop menu
 
-	<self>
-		<cafe-header>
+
+	touched = no
+	touchStart = 0
+
+	touch = active: no, start: 0, end: 0
+
+	def onTouch e
+		# let phase = e.phase
+		# console.log e
+		# if phase == "init" and !touched
+		# 	touched = yes
+		# 	touchStart = e.x
+		# elif phase == "ended"
+		# 	let moved = e.x - touchStart
+		# 	touched = no
+		if e.touches.length
+			unless touch.active
+				touch.active = yes
+				touch.start = e.touches[0].clientX
+			touch.end = [...e.touches]
+				.map(do $1.clientX - touch.start)
+				.sort!.reverse![0]
+			# console.log [...e.touches]
+
+
+		else
+			touch.active = no
+			# console.log touch
+
+			if touch.end > 100
+				console.log "bwd"
+			elif touch.end < -100
+				console.log "fwd"
+
+	<self [of:hidden] @touchstart=onTouch @touchmove=onTouch @touchend=onTouch>
+		<cafe-header menu=menu>
 		<category-list menu=menu>
 		<item-list menu=menu>
 		<order-list>
 		<customer-data>
-		<menu-bar>
-
-
-
-
-tag cafe-header
-	<self
-		[h:{headerHeight}px pos:rel]
-		[tween: height .2s ease]=!headerCompact
-	>
-		<img src="/img/logo.jpg" @click=(currentTab = "category-list")
-			[s:128px t:32px l:calc(50% - 64px)]=!headerCompact
-			[s:64px t:16px l:16px]=headerCompact>
-		<img src="/img/name.jpg" [h:64px b:16px]
-			[r:50% translate:50%]=!headerCompact
-			[r:16px]=headerCompact>
-	css w:100vw pos:fixed l:0 r:0 tween: height .4s ease
-		img pos:abs rd:4px tween: all .3s ease
+		# <menu-bar>
+		<back-button>
+		<order-button>

@@ -16,7 +16,7 @@ global css body $bottom:80px $top:160px
 global css
 	# $block-height: calc($vh - $safe-top - $safe-bottom)
 	*  m:0 p:0 box-sizing:border-box
-	body ff:Arial,sans-serif bg:#3c3c3c
+	body ff:Arial,sans-serif bg:#3c3c3c of:hidden
 	button
 		ol:none bd:none cursor:pointer bgc:transparent
 		user-select:none -webkit-user-select:none -moz-user-select:none -ms-user-select:none

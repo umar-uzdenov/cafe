@@ -6,11 +6,15 @@ import './tabs'
 import './global-data'
 import './global-css'
 
-import './price'
-import './item'
+import './tags/price'
+import './tags/item'
+import './tags/category'
 
 import './header-block'
-import './menu-bar'
+import './tags/cafe-header'
+import './tags/menu-bar'
+import './tags/back-button'
+import './tags/order-button'
 
 import './category-list'
 import './item-list'

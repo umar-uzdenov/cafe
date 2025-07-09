@@ -5,4 +5,4 @@ extend tag element
 	set headerText do value = $1
 
 tag header-block < h2
-	<self [d:hcc h:48px mih:48px t:calc($top - 64px) pos:fixed l:0 r:0 c:white]> headerText
+	<self [d:hcc h:48px mih:48px t:$safe-top pos:fixed l:0 r:0 c:white]> headerText
