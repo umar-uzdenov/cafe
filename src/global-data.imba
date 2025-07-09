@@ -15,10 +15,7 @@ extend tag element
 	get headerHeight do 64 + (headerCompact ? 96 : 264)
 	get headerCompact do
 		# console.log {currentTab}
-		if currentTab == "category-list"
-			return scrolled8px
-		else
-			return true
+		if currentTab == "category-list" then scrolled8px else true	
 	
 	get categoriesPaddingTop do categoriesPaddingTop
 	
