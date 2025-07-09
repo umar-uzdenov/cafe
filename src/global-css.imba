@@ -7,7 +7,9 @@ style.setProperty "--vh", "{tg.viewportStableHeight}px"
 # style.setProperty "--safe-top", "{48}px"
 style.setProperty "--safe-bottom", "{tg.contentSafeAreaInset.bottom}px"
 style.setProperty "--main-height", "{
-	tg.viewportStableHeight - tg.contentSafeAreaInset.top - tg.contentSafeAreaInset.bottom -
+	tg.viewportStableHeight -
+	# tg.contentSafeAreaInset.top -
+	tg.contentSafeAreaInset.bottom -
 	80 # bottom
 }px"
 # style.setProperty "--top", "{160}px"
