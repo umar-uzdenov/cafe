@@ -15,7 +15,7 @@ tag order-button < button
 		if currentTab == "category-list" or currentTab == "item-list"
 			"Посмотреть заказ: {order.total} ₽"
 		elif currentTab == "order-list"
-			"Оформить заказ"
+			"Оформить заказ: {order.total} ₽"
 		elif currentTab == "customer-data"
 			"Заказать"
 	

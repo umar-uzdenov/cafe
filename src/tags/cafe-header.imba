@@ -6,6 +6,11 @@ tag cafe-header
 			if headerCompact then "Меню" else "Кафе Васаби"
 		elif currentTab == "item-list"
 			menu.list[menu.current].name
+		elif currentTab == "order-list"
+			"Ваш заказ"
+		elif currentTab == "customer-data"
+			"Оформление заказа"
+
 	<self
 		[h:{headerHeight - 64}px pos:rel t:64px]
 		[tween: height .2s ease]=!headerCompact
