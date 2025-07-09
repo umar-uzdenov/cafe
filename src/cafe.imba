@@ -35,7 +35,7 @@ tag cafe
 			elif touch.end < -100
 				console.log "fwd"
 
-	<self [of:hidden] @touchstart=onTouch @touchmove=onTouch @touchend=onTouch>
+	<self [of:hidden h:100vh] @touchstart=onTouch @touchmove=onTouch @touchend=onTouch>
 		<cafe-header menu=menu>
 		<category-list menu=menu>
 		<item-list menu=menu>

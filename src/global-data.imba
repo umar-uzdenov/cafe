@@ -12,7 +12,7 @@ let scrolled8px = no
 let categoriesPaddingTop = 16
 
 extend tag element
-	get headerHeight do headerCompact ? 96 : 264
+	get headerHeight do 48 + (headerCompact ? 96 : 264)
 	get headerCompact do
 		# console.log {currentTab}
 		if currentTab == "category-list"

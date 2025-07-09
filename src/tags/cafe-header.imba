@@ -7,7 +7,7 @@ tag cafe-header
 		elif currentTab == "item-list"
 			menu.list[menu.current].name
 	<self
-		[h:{headerHeight}px pos:rel]
+		[h:{headerHeight - 48}px pos:rel t:48px]
 		[tween: height .2s ease]=!headerCompact
 	>
 		<img src="/img/logo.jpg" @click=(currentTab = "category-list")
